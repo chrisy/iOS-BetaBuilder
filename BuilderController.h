@@ -35,6 +35,8 @@
 @interface BuilderController : NSObject {
 	NSTextField *bundleIdentifierField;
 	NSTextField *bundleVersionField;
+	NSTextField *bundleBuildField;
+	NSTextField *bundleCopyrightField;
 	NSTextField *bundleNameField;
 	NSTextField *webserverDirectoryField;
 	NSTextField *archiveIPAFilenameField;
@@ -42,21 +44,30 @@
 	NSButton *generateFilesButton;
 	
 	NSString *mobileProvisionFilePath;
+
+	// Chrisy
+	BOOL batchMode;
+	NSString *saveDirectory, *readmePath;
 }
 
 @property (nonatomic, retain) IBOutlet NSTextField *bundleIdentifierField;
-@property (nonatomic, retain) IBOutlet NSTextField *bundleVersionField;
+@property (nonatomic, retain) IBOutlet NSTextField *bundleVersionField, *bundleBuildField, *bundleCopyrightField;
 @property (nonatomic, retain) IBOutlet NSTextField *bundleNameField;
 @property (nonatomic, retain) IBOutlet NSTextField *webserverDirectoryField;
 @property (nonatomic, retain) IBOutlet NSTextField *archiveIPAFilenameField;
 
 @property (nonatomic, retain) IBOutlet NSButton *generateFilesButton;
 
+@property (nonatomic, assign) BOOL batchMode;
+@property (nonatomic, retain) NSString *saveDirectory, *readmePath;
+
 @property (nonatomic, copy) NSString *mobileProvisionFilePath;
+
+- (id)initInBatchMode;
 
 - (IBAction)specifyIPAFile:(id)sender;
 - (IBAction)generateFiles:(id)sender;
 
-- (void)setupFromIPAFile:(NSString *)ipaFilename;
+- (BOOL)setupFromIPAFile:(NSString *)ipaFilename;
 
 @end
